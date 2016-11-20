@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>组件 Component</title>
+	<style>
+		.color { color: red }
+	</style>
+</head>
+<body>
+	<div id="example"></div>
+
+	<script src="../js/react.js"></script>
+	<script src="../js/react-dom.js"></script>
+	<script src="../js/babel/browser.min.js"></script>
+
+	<script type="text/babel">
+		/*
+			定义一个 SayHello 组件
+			------------------------------
+			*注意:
+			1. 组件类的第一个字母必须大写，否则会报错或无法生成
+			2. render 只能包含一个顶层标签，否则也会报错
+
+		*/
+		var SayHello = React.createClass({
+			render: function() {
+				return <h1>Hello {this.props.name}</h1> 
+				/* 这里有2个顶层的标签,无法正常运行
+				return <h1>Hello {this.props.name}</h1><i></i>
+				*/
+			}
+		})
+
+		ReactDOM.render(
+			<SayHello name="zwl" />,
+			document.getElementById('example')
+		)
+	</script>
+</body>
+</html>

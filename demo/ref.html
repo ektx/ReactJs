@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>验证实例</title>
+</head>
+<body>
+	<div id="example"></div>
+
+	<script src="../js/react.js"></script>
+	<script src="../js/react-dom.js"></script>
+	<script src="../js/babel/browser.min.js"></script>
+
+	<!-- http://www.ruanyifeng.com/blog/2015/03/react.html -->
+	<script type="text/babel">
+		var MyInt = React.createClass({
+			toClick: function() {
+				this.refs.myInt.focus()
+			},
+
+			render: function() {
+				return (
+					<div>
+						<input type="text" ref="myInt" />
+						<input type="button" value="Focus the Input" onClick={this.toClick} />
+					</div>
+				)
+			}
+		});
+		
+		ReactDOM.render(
+			<MyInt />,
+			document.getElementById('example')
+		)
+	</script>
+</body>
+</html>

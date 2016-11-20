@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>My First ReactJs App</title>
+</head>
+<body>
+	<div id="example"></div>
+
+	<script src="../js/react.js"></script>
+	<script src="../js/react-dom.js"></script>
+	<script src="../js/babel/browser.min.js"></script>
+	
+	<script type="text/babel">
+		var name =['kobo', 'Kim', 'Tom'];
+
+		ReactDOM.render(
+			<div>
+			{
+				name.map(function(val) {
+				/* 如果不有key会提示错误 */
+					return <div key={val}>Hello, {val}!</div>
+				})
+			}
+			</div>,
+			document.getElementById('example')
+		)
+	</script>
+</body>
+</html>
