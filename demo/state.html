@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>My First ReactJs App</title>
+	<script src="../js/react.js"></script>
+	<script src="../js/react-dom.js"></script>
+	<script src="../js/babel/browser.min.js"></script>
+</head>
+<body>
+	<div id="example"></div>
+
+	<script type="text/babel">
+
+		let CheckBox = React.createClass({
+			getInitialState: function() {
+				return {checked: true}
+			},
+
+			change: function() {
+				this.setState({checked: !this.state.checked})
+			},
+
+			render: function() {
+				let msg;
+				if (this.state.checked) {
+					msg = 'checked'
+				} else {
+					msg = 'unchecked'
+				}
+				return (
+					<div>
+						<input type="checkbox" onChange={this.change} defaultChecked={this.state.checked}/>
+						<span>Checkbox is {msg}</span>
+					</div>
+				)
+			}
+		});
+
+		ReactDOM.render(
+			<div className="board">
+				<CheckBox/>
+			</div>,
+			document.getElementById('example')
+		)
+	</script>
+</body>
+</html>

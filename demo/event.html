@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>My First ReactJs App</title>
+	<script src="../js/react.js"></script>
+	<script src="../js/react-dom.js"></script>
+	<script src="../js/babel/browser.min.js"></script>
+</head>
+<body>
+	<div id="example"></div>
+
+	<script type="text/babel">
+
+		let Comment = React.createClass({
+			edit: function() {
+				alert('You click Edit!')
+			},
+			remove: function() {
+				alert('You click Remove!')
+			},
+			render: function() {
+				return (
+					<div className="inner">
+						<div className="text">{this.props.children}</div>
+						<button onClick={this.edit}>edit</button>
+						<button onClick={this.remove}>remove</button>
+					</div>
+				)
+			}
+		});
+
+		ReactDOM.render(
+			<div className="board">
+				<Comment>hello react.js</Comment>
+			</div>,
+			document.getElementById('example')
+		)
+	</script>
+</body>
+</html>
