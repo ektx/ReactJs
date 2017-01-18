@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>My First ReactJs App</title>
+	<script src="../js/react.js"></script>
+	<script src="../js/react-dom.js"></script>
+	<script src="../js/babel/browser.min.js"></script>
+</head>
+<body>
+	<div id="example"></div>
+
+	<script type="text/babel">
+
+		let Comment = React.createClass({
+			getInitialState: function() {
+				return { editing: false}
+			},
+			edit: function() {
+				this.setState({editing: true})
+			},
+			remove: function() {
+				console.log('You click Remove!');
+				this.props.removeDiv(this.props.index);
+			},
+			save: function() {
+				this.setState({editing: false});
+				this.props.save(this.refs.newVal.value, this.props.index)
+			},
+
+			renderDisplay: function() {
+				return (
+					<div className="inner">
+						<div className="text">{this.props.children}</div>
+						<button onClick={this.edit}>edit</button>
+						<button onClick={this.remove}>remove</button>
+					</div>
+				)
+			},
+			renderEdit: function() {
+				return (
+					<div className="inner">
+						<textarea ref="newVal" defaultValue={this.props.children}></textarea>
+						<button className="btn-ok" onClick={this.save}>Save</button>
+					</div>
+				)
+			},
+			render: function() {
+				if (this.state.editing) {
+					return this.renderEdit()
+				} else {
+					return this.renderDisplay()
+				}
+			}
+		});
+
+		let Board = React.createClass({
+			getInitialState: function() {
+				return {
+					contents: [
+						'hello react.js',
+						'enevt and add state',
+						'2017-1-17'
+					]
+				}
+			},
+
+			removeComment: function(i) {
+				console.log('Remove Comment');
+				var arr = this.state.contents;
+				arr.splice(i,1);
+				this.setState({contents: arr})
+			},
+
+			saveText: function(val, i) {
+				let arr = this.state.contents;
+				arr[i] = val;
+				this.setState({contents: arr})
+			},
+
+			eachDiv: function(text,index){
+				return (
+					<Comment key={index} 
+						index={index} 
+						removeDiv={this.removeComment} 
+						save={this.saveText}
+					>{text}</Comment>
+				)
+			},
+
+			render: function() {
+				return (
+					<div className="board">
+					{
+						this.state.contents.map(this.eachDiv)
+					}
+					</div>
+				)
+			}
+		})
+
+		ReactDOM.render(
+			<Board></Board>,
+			document.getElementById('example')
+		)
+	</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>My First ReactJs App</title>
+	<script src="../js/react.js"></script>
+	<script src="../js/react-dom.js"></script>
+	<script src="../js/babel/browser.min.js"></script>
+</head>
+<body>
+	<div id="example"></div>
+
+	<script type="text/babel">
+
+		let Comment = React.createClass({
+			getInitialState: function() {
+				return { editing: false}
+			},
+			edit: function() {
+				this.setState({editing: true})
+			},
+			remove: function() {
+				console.log('You click Remove!')
+			},
+			save: function() {
+				this.setState({editing: false})
+			},
+
+			renderDisplay: function() {
+				return (
+					<div className="inner">
+						<div className="text">{this.props.children}</div>
+						<button onClick={this.edit}>edit</button>
+						<button onClick={this.remove}>remove</button>
+					</div>
+				)
+			},
+			renderEdit: function() {
+				return (
+					<div className="inner">
+						<textarea defaultValue={this.props.children}></textarea>
+						<button className="btn-ok" onClick={this.save}>Save</button>
+					</div>
+				)
+			},
+			render: function() {
+				if (this.state.editing) {
+					return this.renderEdit()
+				} else {
+					return this.renderDisplay()
+				}
+			}
+		});
+
+		ReactDOM.render(
+			<div className="board">
+				<Comment>hello react.js</Comment>
+				<Comment>enevt and add state</Comment>
+				<Comment>2017-1-17</Comment>
+			</div>,
+			document.getElementById('example')
+		)
+	</script>
+</body>
+</html>
