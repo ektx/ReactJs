@@ -57,17 +57,19 @@
 		let Board = React.createClass({
 			getInitialState: function() {
 				return {
-					contents: [
-						'hello react.js',
-						'enevt and add state',
-						'2017-1-17'
-					]
+					contents: []
 				}
+			},
+
+			add: function(text) {
+				let arr = this.state.contents;
+				arr.push(text);
+				this.setState({contents: arr})
 			},
 
 			removeComment: function(i) {
 				console.log('Remove Comment');
-				var arr = this.state.contents;
+				let arr = this.state.contents;
 				arr.splice(i,1);
 				this.setState({contents: arr})
 			},
@@ -90,10 +92,13 @@
 
 			render: function() {
 				return (
-					<div className="board">
-					{
-						this.state.contents.map(this.eachDiv)
-					}
+					<div>
+						<button onClick={this.add.bind(null, 'hello!')}>Add</button>
+						<div className="board">
+						{
+							this.state.contents.map(this.eachDiv)
+						}
+						</div>
 					</div>
 				)
 			}
