@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 // 引用组件
-import Hello from './components/hello.jsx'
+import Hello from '@/components/hello'
 
 // 定义一个对象，用于给组件传参
 const cat = {
